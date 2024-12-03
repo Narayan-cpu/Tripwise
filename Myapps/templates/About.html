@@ -1,0 +1,160 @@
+{% extends 'base.html' %}  
+{% block title %}About - Tripwise{% endblock %}  
+{% block content %} 
+{% load static %}  
+
+<div class="about-container">
+    <section class="about-section">
+        <h1 class="heading">Welcome to <span>Tripwise</span></h1>
+        <p class="description">
+            Tripwise is your ultimate travel companion, designed to help you plan seamless trips with ease.
+            Whether you're an adventurer, a vacationer, or a business traveler, Tripwise has everything you need to explore the world hassle-free.
+        </p>
+
+        <div class="features">
+            <h2>Features Overview</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <img src="{% static 'images/Ai.jpg' %}" alt="AI Recommendations">
+                    <h3>AI Recommendations</h3>
+                    <p>Personalized itineraries tailored to your preferences.</p>
+                </div>
+                <div class="feature-item">
+                    <img src="{% static 'images/We.png' %}" alt="Weather Updates">
+                    <h3>Weather Updates</h3>
+                    <p>Stay prepared with real-time weather information.</p>
+                </div>
+                <div class="feature-item">
+                    <img src="{% static 'images/Gem.jpg' %}" alt="Nearby Attractions">
+                    <h3>Nearby Attractions</h3>
+                    <p>Discover local hotspots and hidden gems.</p>
+                </div>
+                <div class="feature-item">
+                    <img src="{% static 'images/bugget.jpg' %}" alt="Budget Management">
+                    <h3>Budget Management</h3>
+                    <p>Keep your trip expenses in check effortlessly.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mission">
+            <h2>Our Mission</h2>
+            <p>
+                Our mission is to make travel planning stress-free, efficient, and enjoyable by leveraging cutting-edge technology and AI.
+            </p>
+        </div>
+    </section>
+</div>
+
+<style>
+    body {
+       
+        font-family: 'Arial', sans-serif;
+        color: #333;
+        background: #f9f9f9;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    .about-container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
+        padding: 20px;
+    }
+
+    .about-section {
+        max-width: 1000px;
+        text-align: center;
+        z-index: 1;
+    }
+
+    .heading {
+        font-size: 3rem;
+        color: #0056b3;
+        margin-bottom: 20px;
+    }
+
+    .heading span {
+        color: #007bff;
+    }
+
+    .description {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        line-height: 1.8;
+    }
+
+    .features h2 {
+        font-size: 2rem;
+        color: #444;
+        margin-bottom: 20px;
+    }
+
+    .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+    }
+
+    .feature-item {
+        background: #fff;
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .feature-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 15px rgba(128, 0, 128, 0.6); /* Purple shadow */
+    }
+
+    .feature-item img {
+        width: 100%;
+        border-radius: 10px;
+        margin-bottom: 15px;
+    }
+
+    .feature-item h3 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+        color: #0056b3;
+    }
+
+    .feature-item p {
+        font-size: 1rem;
+        color: #555;
+    }
+
+    .mission h2 {
+        font-size: 2rem;
+        color: #444;
+        margin-top: 40px;
+    }
+
+    .mission p {
+        font-size: 1.2rem;
+        margin: 20px auto;
+        max-width: 800px;
+        line-height: 1.8;
+    }
+
+    footer {
+        text-align: center;
+        background: #222;
+        color: #fff;
+        padding: 15px 0;
+        position: relative;
+        width: 100%;
+        bottom: 0;
+    }
+</style>
+
+{% endblock %}

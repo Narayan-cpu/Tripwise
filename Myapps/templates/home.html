@@ -1,0 +1,263 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - TripwiseSet{% endblock %}
+
+{% block content %}
+    {% load static %}
+
+   <div> <!-- Hero Section with Particle Animation -->
+    <section class="hero position-relative">
+        <div id="particle-animation" class="hero-animation-container"></div>
+        <div class="container text-center overlay text-dark">
+            <h1 class="display-3 fw-bold">Discover Your Dream Destination</h1>
+            <p class="lead">Tripwise makes travel planning effortless and exciting.</p>
+            <a href="#" class="cta-btn btn btn-warning btn-lg">Start Planning</a>
+        </div>
+    </section>
+
+    <!-- Feature Section with Sliding Cards -->
+    <section class="section bg-light py-5">
+        <div class="container text-center">
+            <h2 class="mb-4 text-primary fw-bold">Why Choose Tripwise?</h2>
+            <div id="featureCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="{% static 'images/SSP.jpg' %}" alt="Custom Itinerary" class="carousel-img mb-4 mx-auto d-block">
+                        <h3 class="text-secondary fw-semibold">Custom Itineraries</h3>
+                        <p class="text-muted">Tailor your travel plans with unique and flexible tools.</p>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{% static 'images/LUO.jpg' %}" alt="Expert Advice" class="carousel-img mb-4 mx-auto d-block">
+                        <h3 class="text-secondary fw-semibold">Expert Advice</h3>
+                        <p class="text-muted">Access travel tips and insights from seasoned travelers.</p>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{% static 'images/hampi.jpg' %}" alt="Easy Booking" class="carousel-img mb-4 mx-auto d-block">
+                        <h3 class="text-secondary fw-semibold">Seamless Booking</h3>
+                        <p class="text-muted">Book your accommodation, transport, and activities with ease.</p>
+                    </div>
+                </div>
+                <!-- Carousel Controls -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#featureCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon custom-control-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#featureCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon custom-control-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <section 
+    class="cta-section text-center py-5 position-relative" 
+    style="background-image: url('{% static 'images/RIP.jpg' %}'); background-attachment: fixed; background-size: cover; background-position: center; color: white; overflow: hidden;">
+    
+    <!-- Gradient overlay -->
+    <div class="cta-overlay position-absolute top-0 start-0 w-100 h-100" 
+        style="background: linear-gradient(to bottom, rgba(0, 0, 50, 0.7), rgba(0, 0, 0, 0.9)); z-index: 1;">
+    </div>
+    
+    <!-- Content -->
+    <div class="position-relative z-index-2 container">
+        <h2 class="fw-bold display-3 animate__animated animate__fadeInDown" 
+            style="text-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);">
+            Plan Your Trip Today!
+        </h2>
+        <p class="lead animate__animated animate__fadeInUp animate__delay-1s" 
+           style="text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);">
+            Let <span style="color: blue;">Tripwise</span> help you explore destinations worldwide.
+        </p>
+        <div class="mt-4">
+            <a href="#" 
+               class="cta-btn btn btn-primary btn-lg px-4 py-3 animate__animated animate__pulse animate__infinite" 
+               style="background: #FFA500; border: none; transition: all 0.3s ease; color: white; text-transform: uppercase; letter-spacing: 2px;">
+                Start Your Adventure
+            </a>
+        </div>
+        
+    </div>
+    
+   
+</section>
+
+</div>
+    <!-- Particle Animation -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    <script>
+        particlesJS("particle-animation", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#2f80ed" },
+                shape: { type: "circle" },
+                opacity: { value: 0.6, random: false },
+                size: { value: 4, random: true },
+                line_linked: { enable: true, distance: 150, color: "#76b0f1", opacity: 0.5, width: 1 },
+                move: { enable: true, speed: 2, direction: "none", random: false, straight: false, out_mode: "out" }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: { onhover: { enable: true, mode: "grab" }, onclick: { enable: true, mode: "push" } },
+                modes: { grab: { distance: 200, line_linked: { opacity: 0.5 } } }
+            }
+        });
+    </script>
+
+    <!-- Bootstrap Carousel JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Styles -->
+    <style>
+        .hero-animation-container {
+            padding:0;
+            position: relative;
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #8ec5fc, #e0c3fc);
+            overflow: hidden;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-color: #000;
+        }
+
+        .carousel-img {
+            width: 100%;
+            height: 350px; /* Adjust to desired size */
+            object-fit: cover;
+            border-radius: 15px;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .carousel-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-section {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Section Styling */
+        .section {
+            background: #f9f9f9;
+            padding: 4rem 0;
+        }
+
+        /* Text Styling */
+        h2 {
+            font-size: 2.5rem;
+            color: #4facfe;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+        }
+
+        p {
+            font-size: 1rem;
+            color: white;
+            line-height: 1.6;
+        }
+
+        /* Button Styling */
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            filter: invert(100%);
+        }
+
+        .custom-control-icon {
+            background-color: white;
+            padding: 10px;
+            border-radius: 50%;
+            transition: background-color 0.3s ease;
+        }
+
+        .custom-control-icon:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+
+
+
+        .cta-section {
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            padding: 0rem 0;
+           
+        }
+    
+        .cta-overlay {
+            position: relative;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+    
+        .cta-btn {
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease-in-out;
+        }
+    
+        .cta-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            background-color: #ff7e00; /* Change to a warmer color on hover */
+        }
+    
+        /* Ensure text animations are smooth */
+        .cta-section h2, .cta-section p {
+            opacity:0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards;
+        }
+    
+        .cta-section h2.animate__fadeIn {
+            animation-delay: 1s;
+        }
+    
+        .cta-section p.animate__fadeIn {
+            animation-delay: 2s;
+        }
+    
+        /* Button zoom-in animation */
+        .cta-section .cta-btn {
+            opacity: 0;
+            animation: zoomIn 1s forwards;
+        }
+    
+        .cta-section .cta-btn.animate__zoomIn {
+            animation-delay: 3s;
+        }
+    
+        /* Keyframes for text animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    
+        @keyframes zoomIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+    
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block title %}Travel Advisory{% endblock %}
+{% block content %}
+<div class="advisory-container m-2">
+    <h1 class="heading m-5">Travel Advisory</h1>
+    <form method="post" class="search-form p-5">
+        {% csrf_token %}
+        <input type="text" name="country" placeholder="Enter a country" required>
+        <button type="submit">Check Advisory</button>
+    </form>
+
+    {% if error_message %}
+    <div class="error">{{ error_message }}</div>
+    {% endif %}
+
+    {% if advisory_info %}
+    <div class="advisory-details">
+        <h2>{{ advisory_info.name }}</h2>
+        <p><strong>Region:</strong> {{ advisory_info.region }}</p>
+        <p><strong>Subregion:</strong> {{ advisory_info.subregion }}</p>
+        <p><strong>Population:</strong> {{ advisory_info.population }}</p>
+        <p><strong>Travel Advice:</strong> {{ advisory_info.advice }}</p>
+    </div>
+    {% endif %}
+</div>
+
+<style>
+    .advisory-container {
+        padding: 20px;
+        max-width: 800px;
+        margin: auto;
+        text-align: center;
+        margin-top: 100px; /* Added top margin */
+    }
+    .heading {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+    .search-form input {
+        padding: 10px;
+        width: 60%;
+        font-size: 1rem;
+        margin-right: 10px;
+    }
+    .search-form button {
+        padding: 10px 20px;
+        font-size: 1rem;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+    }
+    .advisory-details {
+        text-align: left;
+        margin-top: 20px;
+    }
+    .advisory-details p {
+        margin: 10px 0;
+    }
+    .error {
+        color: red;
+        margin-top: 20px;
+    }
+</style>
+{% endblock %}

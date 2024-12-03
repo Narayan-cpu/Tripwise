@@ -1,0 +1,96 @@
+<section>
+
+<style>
+
+    /* Card Form */
+    .comment-form-card {
+        background: linear-gradient(145deg, #6a1b9a, #ff4081); /* Glowing purple-pink background */
+        border-radius: 16px; /* Rounded corners for the card */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Subtle shadow effect */
+        padding: 20px;
+        margin-top: 20px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column; /* Ensure items are stacked vertically */
+        gap: 15px; /* Add some space between elements */
+    }
+    
+    /* Hover effect for the form card */
+    .comment-form-card:hover {
+        transform: translateY(-5px); /* Lift the card on hover */
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6); /* Enhanced shadow */
+    }
+    
+    /* Gradient Button Styling */
+    .gradient-button {
+        background: linear-gradient(to right, #ff416c, #ff4b2b); /* Gradient colors */
+        border: none;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 12px 30px;
+        border-radius: 50px; /* Rounded corners */
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%; /* Ensures button spans the full width */
+        outline: none;
+    }
+    
+    /* Hover effect for the button */
+    .gradient-button:hover {
+        transform: scale(1.1); /* Slightly enlarge on hover */
+        filter: brightness(1.2); /* Brighten the button */
+    }
+    
+    /* Button Animation (Pulse Effect) */
+    .gradient-button:active {
+        animation: pulse 0.3s ease-out;
+    }
+    
+    /* Pulse Animation */
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.1);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+    
+    /* Textarea Style */
+    textarea {
+        width: 100%;
+        padding: 12px;
+        background: #2a2a3c; /* Dark background */
+        color: #e4e4f0; /* Light text */
+        border: 1px solid #44445e;
+        border-radius: 8px;
+        resize: none;
+        transition: border-color 0.3s ease;
+    }
+    
+    /* Focus Effect for Textarea */
+    textarea:focus {
+        outline: none;
+        border-color: #4facfe; /* Highlight border when focused */
+        box-shadow: 0 0 8px rgba(79, 172, 254, 0.6); /* Blue glow effect */
+    }
+    
+
+</style>
+<form action="{% url 'add_comment' post.id %}" method="POST" class="comment-form-card">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="gradient-button">Add Comment</button>
+</form>
+
+</section>

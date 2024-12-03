@@ -1,0 +1,222 @@
+{% extends 'base.html' %}
+
+{% block title %}Community - TripwiseSet{% endblock %}
+
+{% block content %}
+{% load static %}
+
+
+
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(to bottom, #1e1e2f, #2a2a3c);
+        color: #e4e4f0;
+      }
+      
+      .container {
+        max-width: 900px;
+        margin: 30px auto;
+        padding: 20px;
+      }
+      
+      .post {
+        background: linear-gradient(to bottom right, #33334d, #29293f);
+        border: 1px solid #44445e;
+        border-radius: 16px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        padding: 20px;
+        margin-bottom: 25px;
+        overflow: hidden;
+        position: relative;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      
+      .post:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+      }
+      
+      .post img {
+        width: 100%;
+        height: auto;
+        max-height: 450px;
+        border-radius: 12px;
+        margin-bottom: 15px;
+        object-fit: cover;
+      }
+      
+      .post p {
+        margin: 10px 0;
+      }
+      
+      .post small {
+        display: block;
+        color: #9b9bb7;
+        margin-top: 8px;
+      }
+      
+      .like-button,
+      .comment-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 20px;
+        font-size: 14px;
+        font-weight: bold;
+        color: #fff;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        gap: 10px;
+      }
+      
+      .like-button {
+        background: linear-gradient(to right, #ff416c, #ff4b2b);
+        margin-right: 10px;
+      }
+      
+      .comment-button {
+        background: linear-gradient(to right, #4facfe, #00f2fe);
+      }
+      
+      .like-button:hover,
+      .comment-button:hover {
+        transform: scale(1.1);
+        filter: brightness(1.2);
+      }
+      
+      .like-button svg,
+      .comment-button svg {
+        width: 18px;
+        height: 18px;
+        fill: #fff;
+      }
+      
+      .likes-count {
+        font-size: 14px;
+        color: #9b9bb7;
+        margin-top: 5px;
+      }
+      
+      .comment-section {
+        margin-top: 15px;
+      }
+      
+      .comment {
+        background: #40405a;
+        padding: 12px 15px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        font-size: 14px;
+        color: #e4e4f0;
+      }
+      
+      textarea {
+        width: 100%;
+        padding: 12px;
+        margin-top: 10px;
+        background: #2a2a3c;
+        color: #e4e4f0;
+        border: 1px solid #44445e;
+        border-radius: 8px;
+        resize: none;
+      }
+      
+      textarea:focus {
+        outline: none;
+        border-color: #4facfe;
+        box-shadow: 0 0 8px rgba(79, 172, 254, 0.6);
+      }
+      
+      button {
+        width: 100%;
+        padding: 12px;
+        margin-top: 10px;
+        background: linear-gradient(to right, #7b2ff7, #f107a3);
+        color: #fff;
+        border: none;
+        border-radius: 50px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      
+      button:hover {
+        filter: brightness(1.3);
+        transform: translateY(-3px);
+      }
+      
+      h4 {
+        margin-top: 20px;
+        font-weight: bold;
+        color: #e4e4f0;
+      }
+      
+      a {
+        color: #00f2fe;
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+      
+      a:hover {
+        color: #4facfe;
+      }
+      
+      
+  </style>
+
+
+    <div class="container">
+        <div class="container">
+            {% for post in posts %}
+              <div class="post">
+                <img src="{{ post.image.url }}" alt="Post Image">
+                <p>{{ post.story }}</p>
+                <p><small>Posted by <strong>{{ post.user.username }}</strong> on {{ post.created_at }}</small></p>
+                
+                <!-- Like button -->
+                <form action="{% url 'like_post' post.id %}" method="POST">
+                  {% csrf_token %}
+                  <button type="submit" class="like-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                    Like
+                  </button>
+                </form>
+          
+                <!-- Display likes -->
+                <p class="likes-count">{{ post.likes.count }} Likes</p>
+          
+                <!-- Comments -->
+                <div class="comment-section">
+                  <h4>Comments:</h4>
+                  {% for comment in post.comments.all %}
+                    <div class="comment">
+                      <strong>{{ comment.user.username }}:</strong> {{ comment.content }}
+                    </div>
+                  {% endfor %}
+                </div>
+          
+                <!-- Add a comment -->
+                <form action="{% url 'add_comment' post.id %}" method="POST">
+                  {% csrf_token %}
+                  {{ comment_form.as_p }}
+                  <button type="submit" class="comment-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                      <path d="M21 11.5a8.38 8.38 0 0 0-5.62-7.92c-.2-.08-.42-.08-.62 0A8.5 8.5 0 1 0 5 20.54L3.5 21.9a1 1 0 0 0 .87 1.68l2.84-.94a8.48 8.48 0 0 0 1.66.18 8.5 8.5 0 0 0 13-7.32zm-8.5 6a6.5 6.5 0 1 1 6.5-6.5 6.51 6.51 0 0 1-6.5 6.5z"/>
+                    </svg>
+                    Add Comment
+                  </button>
+                </form>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+{% endblock %}
