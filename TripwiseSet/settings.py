@@ -143,5 +143,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # settings.py
 
-
+CASHFREE_APP_ID = 'TEST1036660198c09a3fcb5d4b0178e610666301'
+CASHFREE_SECRET_KEY = 'cfsk_ma_test_9f97b22a1a54af70cdbab223a3f7ae4b_d7a88a72'
 CASHFREE_ENDPOINT = 'https://test.cashfree.com/api/v2/'

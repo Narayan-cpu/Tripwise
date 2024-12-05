@@ -12,4 +12,5 @@ urlpatterns = [
     path('community/create/', views.create_post, name='create_post'),
     path('community/<int:post_id>/comment/', views.add_comment, name='add_comment'),
     path('community/<int:post_id>/like/', views.like_post, name='like_post'),
+    path('bot/', views.bot, name='bot'),
 ] 

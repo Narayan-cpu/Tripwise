@@ -164,3 +164,7 @@ def like_post(request, post_id):
     post = Post.objects.get(id=post_id)
     Like.objects.get_or_create(user=request.user, post=post)
     return redirect('community')
+
+
+def bot(request):
+    return render(request,'bot.html')
